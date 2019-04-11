@@ -1,0 +1,43 @@
+<template name="adminSales">
+
+  <div class="app-content content container-fluid">
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-xs-12 mb-1">
+          <h2 class="content-header-title"> </h2>
+        </div>
+      </div>
+      <div class="content-body">
+
+          <div class="table-responsive">
+            <h3>Total: {{sales.length}} </h3>
+            <table class="table">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>Nome</th>
+                  <th>Créditos</th>
+                  <th>Última atualização</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{ #each sales }}
+                <tr data-id="{{_id}}">
+                  <td>{{ user createdBy }}</td>
+                  <td>
+                    {{ credits }}
+                  </td>
+                  <td>
+                    {{ moFormat createdAt 'L LT' }} -
+                    {{ status }}
+                  </td>
+                </tr>
+                {{ /each }}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+</template>

@@ -1,0 +1,110 @@
+<template name="newRegistry">
+
+  <div class="card">
+    <div class="card-body">
+        <div class="media">
+          <div class="card-header">
+            <h4 class="card-title">
+              Nova pesquisa
+            </h4>
+          </div>
+          <div class="p-2 media-body">
+
+            <div id="divSearchType">
+
+            <div class="row">
+
+              <div class="col-md-4">
+
+                    <div class="card bg-teal">
+                      <div class="card-block">
+                          <div class="media">
+                              <div class="media-body white text-xs-left">
+                                  <h3>Saldo Atual</h3>
+                                  <span>R$ 500</span>
+                              </div>
+                              <div class="media-right media-middle">
+                                  <i class="icon-user1 white font-large-2 float-xs-right"></i>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <a href="/credits" class="btn btn-primary">Comprar créditos</a>
+
+              </div>
+
+              <div class="col-md-8">
+
+                  <h3>Qual pesquisa deseja realizar?</h3>
+                  <div class="card cardSearch" data-stype="criminal">
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="media">
+                                <div class="media-body text-xs-left">
+                                    <h3>Criminal</h3>
+                                    <span>R$ 5{{ prices.criminal }}</span>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-clipboard4 grey font-large-2 float-xs-right"></i>
+                                </div>.
+                            </div>
+                            <progress class="progress progress-sm progress-grey mt-1 mb-0" value="100" max="100"></progress>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="card cardSearch" data-stype="financeira">
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="media">
+                                <div class="media-body text-xs-left">
+                                    <h3>Financeira
+                                      <br />
+                                      <span style="font-size: 14px; color: #888; font-weight: normal;">Retorna se existem restrições ou não para o CPF informado
+com DETALHAMENTO de cada ocorrência.<br />
+Sintese Cadastral, Alerta de Documentos Roubados, Restrições, Pendências Internas, Pendências FINANCEIRAS, Pendências no VAREJO, Cheques sem fundo
+</span>
+                                    </h3>
+                                    <span>R$ 10 {{ prices.financeira }}</span>
+
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-banknote grey font-large-2 float-xs-right"></i>
+                                </div>
+                            </div>
+                            <progress class="progress progress-sm progress-grey mt-1 mb-0" value="100" max="100"></progress>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="card cardSearch" data-stype="completa">
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="media">
+                                <div class="media-body text-xs-left">
+                                    <h3>Completa</h3>
+                                    <span>R$ 12 {{ prices.completa }}</span>
+                                </div>
+                                <div class="media-right media-middle">
+                                    <i class="icon-android-add-circle grey font-large-2 float-xs-right"></i>
+                                </div>
+                            </div>
+                            <progress class="progress progress-sm progress-grey mt-1 mb-0" value="100" max="100"></progress>
+                        </div>
+                    </div>
+                  </div>
+
+
+              </div>
+            </div>
+            </div>
+
+            <div id="divFrmReg" style="display:none">
+              {{ > formRegistry }}
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+</template>

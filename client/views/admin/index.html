@@ -1,0 +1,51 @@
+<template name="admin">
+
+  <div class="app-content content container-fluid">
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-xs-12 mb-1">
+          <h2 class="content-header-title">Admin</h2>
+        </div>
+      </div>
+      <div class="content-body">
+        <div class="nav-vertical">
+      		<ul class="nav nav-tabs nav-left" style="height: 102px;">
+      			<li class="nav-item">
+      				<a class="nav-link {{active 1}}" data-tab="1" id="baseVerticalLeft-tab1" data-toggle="tab" aria-controls="tabVerticalLeft1" href="#tabVerticalLeft1" aria-expanded="false">Usuários</a>
+      			</li>
+      			<li class="nav-item">
+      				<a class="nav-link {{active 2}}" data-tab="2" id="baseVerticalLeft-tab2" data-toggle="tab" aria-controls="tabVerticalLeft2" href="#tabVerticalLeft2" aria-expanded="false">Geral</a>
+      			</li>
+      			<li class="nav-item">
+      				<a class="nav-link {{active 3}}" data-tab="3" id="baseVerticalLeft-tab3" data-toggle="tab" aria-controls="tabVerticalLeft3" href="#tabVerticalLeft3" aria-expanded="false">Pesquisas</a>
+      			</li>
+      			<li class="nav-item">
+      				<a class="nav-link {{active 4}}" data-tab="4" id="baseVerticalLeft-tab4" data-toggle="tab" aria-controls="tabVerticalLeft4" href="#tabVerticalLeft4" aria-expanded="false">Vendas</a>
+      			</li>
+      			<li class="nav-item" style="display:none">
+      				<a class="nav-link {{active 5}}" data-tab="5" id="baseVerticalLeft-tab5" data-toggle="tab" aria-controls="tabVerticalLeft5" href="#tabVerticalLeft5" aria-expanded="false">Empresas</a>
+      			</li>
+      		</ul>
+      		<div class="tab-content px-1">
+      			<div class="tab-pane {{active 1}}" id="tabVerticalLeft1" aria-labelledby="baseVerticalLeft-tab1">
+      				{{ > adminUsers }}
+      			</div>
+      			<div class="tab-pane {{active 2}}" id="tabVerticalLeft2" aria-labelledby="baseVerticalLeft-tab2">
+      				{{ > adminGeneral }}
+      			</div>
+      			<div class="tab-pane {{active 3}}" id="tabVerticalLeft3" aria-labelledby="baseVerticalLeft-tab3">
+      				{{ > adminSearchs }}
+      			</div>
+      			<div class="tab-pane {{active 4}}" id="tabVerticalLeft4" aria-labelledby="baseVerticalLeft-tab4">
+      				{{ > adminSales }}
+      			</div>
+      			<div class="tab-pane {{active 5}}" id="tabVerticalLeft5" aria-labelledby="baseVerticalLeft-tab5">
+      				{{ > adminCompanies }}
+      			</div>
+      		</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>

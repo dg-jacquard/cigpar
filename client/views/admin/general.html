@@ -1,0 +1,35 @@
+<template name="adminGeneral">
+
+  <div class="app-content content container-fluid">
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-xs-12 mb-1">
+          <h2 class="content-header-title"> </h2>
+        </div>
+      </div>
+      <div class="content-body">
+
+        <form class="form" id="frmGeneral">
+
+          <div class="form-body">
+
+            <div class="form-group">
+              <label>Preço por pesquias</label>
+              <input type="text" name="price" value="{{ config.price }}" class="form-control">
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="cl-submit btn btn-primary btn-lg btn-w ">
+                Salvar
+              </button>
+            </div>
+
+          </div>
+
+          </form>
+
+        </div>
+      </div>
+  </div>
+
+</template>

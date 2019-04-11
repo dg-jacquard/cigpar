@@ -1,0 +1,13 @@
+#leadDetails .nobrx .table thead th, #accordianAlert .nobrx .table td,
+#leadDetails .nobrx .table tbody, #accordianAlert .nobrx .table thead,
+#leadDetails .nobrx .table {
+  border: 0 !important;
+}
+
+#leadDetails .nobrx .card-form {
+  background: #f9f9f9
+}
+
+.iconDeleteRight {
+  float: right
+}

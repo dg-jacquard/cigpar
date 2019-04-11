@@ -1,0 +1,153 @@
+<template name="adminUsers">
+
+  <div class="app-content content container-fluid">
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-xs-12 mb-1">
+          <h2 class="content-header-title"> </h2>
+        </div>
+      </div>
+      <div class="content-body">
+
+        <form class="form" id="frmUser">
+
+          <div class="form-body">
+
+            <div class="form-group">
+              <label>Nome</label>
+              <input type="text" id="txtName" name="aname" value="{{ editMode.name }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Empresa</label>
+              <input type="text"  name="company" value="{{ editMode.company }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Email</label>
+              <input type="text" name="aemail" value="{{ editMode.email }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Créditos</label>
+              <input type="number" name="credits" value="{{ editMode.credits }}" class="form-control">
+            </div>
+
+            <div class="form-group" style="display:none">
+              <label>Valor por pesquisa</label>
+              <input type="number" name="searchPrice" value="{{ editMode.searchPrice }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Preço criminal</label>
+              <input type="text" name="criminal" value="{{ editMode.criminal }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+              <label>Preço financeiro</label>
+              <input type="number" name="financeira" value="{{ editMode.financeira }}" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Preço completo</label>
+              <input type="number" name="completa" value="{{ editMode.completa }}" class="form-control">
+            </div>
+
+            <!-- <div class="form-group">
+              <label>Empresa</label>
+              <select name="company" class="form-control">
+                {{ #each companies }}
+                  <option {{isSelected editMode.company _id}} value="{{ _id }}">{{ name }}</option>
+                {{ /each }}
+              </select>
+            </div> -->
+
+            <div class="form-group">
+              {{ #if editMode._id }}
+              <label>Alterar senha</label>
+              {{ else }}
+              <label>Senha</label>
+              {{/if}}
+              <input type="password" name="apassword" value="" class="form-control">
+              {{ #if editMode._id }}
+                <p class="help-block" style="color: #808080; font-style: italic;">deixe em branco para não alterar a senha.</p>
+              {{/if}}
+            </div>
+
+            <div class="form-group">
+              <label>Nível</label>
+              <select class="form-control" name="arole">
+                <option value="normal" {{isSelected editMode.role 'normal'}}>Normal</option>
+                <option value="operator" {{isSelected editMode.role 'operator'}}>Operador</option>
+                <option value="admin" {{isSelected editMode.role 'admin'}}>Admin</option>
+              </select>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="cl-submit btn btn-primary btn-lg btn-w ">
+                {{ #if editMode._id }}
+                  <i class="icon icon-check"></i>
+                  Salvar edição
+                {{ else }}
+                  <i class="icon icon-plus"></i>
+                  Adicionar usuário
+                {{ /if}}
+              </button>
+              {{ #if editMode._id }}
+                <a href="/admin/users" class="btn-reload btn btn-default btn-lg">
+                  Cancelar
+                </a>
+              {{ /if}}
+            </div>
+
+          </div>
+
+        </form>
+
+          <hr>
+
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>Nome</th>
+                  <th>Empresa</th>
+                  <th>Email</th>
+                  <th>Créditos</th>
+                  <th>Nível</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{ #each users }}
+                <tr>
+                  <td>{{ profile.name }}</td>
+                  <td>{{ profile.company }}</td>
+                  <td>
+                    {{#each $mapped emails}}
+                        {{address}}{{#unless $last}}, {{/unless}}
+                    {{/each}}
+                  </td>
+                  <td>R$ {{ profile.credits }}</td>
+                  <td>
+                    {{join roles ','}}
+                  </td>
+                  <td>
+                    <a href="#" class="del btn btn-sm btn-danger">
+                      <i class="icon-trash"></i>
+                    </a>
+                    &nbsp;
+                    <a href="#" class="edit btn btn-sm btn-info">
+                      <i class="icon-edit"></i>
+                    </a>
+                  </td>
+                </tr>
+                {{ /each }}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+</template>

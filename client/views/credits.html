@@ -1,0 +1,77 @@
+<template name="credits">
+
+  <div class="card">
+    <div class="card-body">
+        <div class="media">
+          <div class="card-header">
+            <h4 class="card-title">
+
+            </h4>
+          </div>
+          <div class="p-2 media-body">
+
+            <form id="frmCredits">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3>Pagar via PagSeguro</h3>
+                  <p>Para carregar créditos na sua conta, basta escolher o valor desejado, pague via PagSeguro. Após a confirmação do pagamento, os créditos estarão disponíveis na sua conta.</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Créditos:</label>
+                  <select name="credits" id="txtCredits" class="form-control">
+                    <option value="5">5</option>
+                    <option value="50">100</option>
+                    <option value="200">200</option>
+                    <option value="250">250</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    <option value="2000">2000</option>
+                    <option value="3000">3000</option>
+                    <option value="4000">4000</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <br>
+                  <a href="/" class="btn btn-danger btn-lg">Voltar</a>
+                  <button id="btnBuy" class="btn btn-success btn-lg">Pagar</button>
+                </div>
+              </div>
+            </form>
+
+            <div class="row">
+            <div class="table-responsive">
+              <h3>Histórico: {{sales.length}} </h3>
+              <table class="table">
+                <thead class="thead-inverse">
+                  <tr>
+                    <th>Créditos</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{ #each sales }}
+                  <tr data-id="{{_id}}">
+                    <td>
+                      {{ credits }}
+                    </td>
+                    <td>
+                      {{ moFormat createdAt 'L LT' }} -
+                      {{ status }}
+                    </td>
+                  </tr>
+                  {{ /each }}
+                </tbody>
+              </table>
+            </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+</template>

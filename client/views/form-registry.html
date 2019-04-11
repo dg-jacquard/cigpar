@@ -1,0 +1,273 @@
+<template name="formRegistry">
+
+  <h3 style="margin-top: -60px;
+    position: absolute;
+    right: 20px;"><span {{statusClass registry.status}}>
+      {{ registry.status }}</span></h3>
+
+  <form id="frmRegistry">
+    <div class="row">
+      <div class="form-group col-md-4 xst xst-criminal xst-financeira">
+        <h3 class="xst xst-alertfn xst-financeira alert alert-warning" style="border-color: #ecdec1 !important;
+    background-color: #f6e8cc !important;font-size: 16px">Retorna se existem restrições ou não para o CPF informado
+com DETALHAMENTO de cada ocorrência.</h3>
+
+<ul class="xst-alertfn">
+
+
+ <li>
+
+   Sintese Cadastral.
+ </li>
+ <li>
+
+   Alerta de Documentos Roubados.
+   </li>
+ <li>
+
+   Restrições.</li>
+ <li>
+
+   Pendências Internas.</li>
+ <li>
+
+   Pendências FINANCEIRAS.</li>
+ <li>
+
+   Pendências no VAREJO.</li>
+ <li>
+
+   Cheques sem fundo.</li>
+</ul>
+        <div>
+          <label>CPF:</label>
+            <input id="txtCPF" required="required" type="text" name="cpf" class="form-control mask mask-cpf" value="{{ registry.cpf }}">
+        </div>
+      </div>
+      <div class="form-group col-md-4 xst xst-criminal">
+        <div>
+          <label>Nome completo: (sem abreviações)</label>
+          <input type="text" required="required" class="xreq form-control " name="name" value="{{ registry.name }}">
+        </div>
+      </div>
+      <div class="form-group col-md-4 xst xst-criminal">
+        <div>
+          <label>Data de nascimento:</label>
+          <input type="text" required="required" class="xreq form-control mask mask-date" name="birthday" value="{{ registry.birthday }}">
+        </div>
+      </div>
+    </div>
+    <div class="row xst xst-criminal">
+      <div class="form-group col-md-3">
+        <div>
+          <label>RG:</label>
+          <input required="required" type="text" name="rg" class="xreq form-control" value="{{ registry.rg }}">
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <div>
+          <label>UF RG:</label>
+          <select name="rgUf" class="form-control">
+            {{ #each ufs }}
+              <option {{ isSelected this registry.rgUf }} value="{{this}}">{{this}}</option>
+            {{ /each }}
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <div>
+          <label>Nome do Pai:</label>
+          <input required="required" type="text" name="nameOfFather" class="xreq form-control" value="{{ registry.nameOfFather }}">
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <div>
+          <label>Nome da Mãe:</label>
+          <input required="required" type="text" name="nameOfMother" class="xreq form-control" value="{{ registry.nameOfMother }}">
+        </div>
+      </div>
+    </div>
+    <div class="row xst xst-criminal">
+      <div class="form-group col-md-2">
+        <div>
+          <label>CEP:</label>
+          <input required="required" type="text" name="cep" class="xreq form-control mask mask-cep" value="{{ registry.cep }}">
+        </div>
+      </div>
+      <div class="form-group col-md-3">
+        <div>
+          <label>Logradouro:</label>
+          <input required="required" type="text" name="street" class="xreq form-control" value="{{ registry.street }}">
+        </div>
+      </div>
+      <div class="form-group col-md-1">
+        <div>
+          <label>Número:</label>
+          <input type="text" name="number" class="form-control" value="{{ registry.number }}">
+        </div>
+      </div>
+      <div class="form-group  col-md-2">
+        <div>
+          <label>Bairro:</label>
+          <input required="required" type="text" name="neighborhood" class="xreq form-control" value="{{ registry.neighborhood }}">
+        </div>
+      </div>
+      <div class="form-group col-md-1">
+        <div>
+          <label>Estado:</label>
+          <select name="uf" class="form-control">
+            {{ #each ufs }}
+              <option {{ isSelected this registry.uf }} value="{{this}}">{{this}}</option>
+            {{ /each }}
+          </select>
+        </div>
+      </div>
+      <div class="form-group col-md-2">
+        <div>
+          <label>Cidade:</label>
+          <input required="required" type="text" name="city" class="xreq form-control" value="{{ registry.city }}">
+        </div>
+      </div>
+    </div>
+
+    {{ #if or isOperator isAdmin }}
+    <hr>
+    <div class="form-group">
+      <div>
+        <label>Status Criminal:</label>
+        <select name="status" class="form-control">
+          {{ #each statusList }}
+            <option {{ isSelected this registry.status }} value="{{this}}">{{this}}</option>
+          {{ /each }}
+        </select>
+      </div>
+    </div>
+    {{ /if }}
+
+    <button id="btnSave" class="btn btn-primary btn-lg">Salvar</button>
+    <span style="display:none" id="btnSaveOk" class="tag tag-success">Dados salvo com sucesso!</span>
+
+  </form>
+
+  {{ #if isDetails }}
+
+    <hr>
+
+    <h6>Cadastro realizado: {{ moFormat registry.createdAt 'L LT' }}</h6>
+    <h6>Última atualização: {{ moFormat registry.updatedAt 'L LT' }}</h6>
+    {{ #unless isNormal }}
+      <h6>Criado por: {{ userName registry.createdBy }}</h6>
+      <h6>Empresa: {{ userCompany registry.createdBy }}</h6>
+    {{ /unless }}
+    <hr>
+
+      <legend>Mensagens</legend>
+
+      {{ #if isFinanceiro }}
+      <hr>
+      <div class="form-group">
+        <div>
+          <label>Status Financeiro:</label>
+          <textarea name="statusFinanceiro" rows="5" class="form-control">{{registry.statusFinanceiro}}</textarea>
+        </div>
+      </div>
+      {{ /if }}
+
+      <div class="list-group">
+
+        {{ #each registry.messages }}
+          <a class="list-group-item list-group-item-action {{ messageClass this }}">
+            <h5 class="list-group-item-heading">{{ userName from }} <small>({{ moFormat date 'L LT' }})</small></h5>
+            <p class="list-group-item-text">
+            {{ nl2br content }}
+            </p>
+          </a>
+        {{ /each }}
+
+      </div>
+
+      <form id="frmMessage" style="margin-top: 5px">
+        <div class="form-group">
+          <textarea name="message" rows="4" class="form-control" placeholder="Nova mensagem..."></textarea>
+        </div>
+        <input class="btn btn-success btn-round" type="submit" name="send" value="Enviar">
+      </form>
+
+      {{ #unless isNormal }}
+
+      <hr>
+
+      <legend>Eventos</legend>
+
+      <div class="list-group">
+
+        {{ #if isFinanceiro }}
+        <a class="list-group-item list-group-item-action">
+          <h5 class="list-group-item-heading">
+            {{ registry.statusFinanceiro }}
+          </h5>
+        </a>
+        {{ /if }}
+
+        {{ #each searchResult }}
+          <a class="list-group-item list-group-item-action">
+            <h5 class="list-group-item-heading">
+
+              {{ #if codigo_retorno }}
+                Cod: #{{ codigo_retorno  }}
+                {{ this.mensagem }}
+              {{ /if }}
+
+              {{ #if status_analise }}
+                <small>{{ status_analise }} - {{ descricao }}</small>
+                {{  situacao }}
+              {{ /if }}
+
+              {{ #if data_registro }}
+                <small>({{ moFormat data_registro 'L LT' }})</small>
+              {{ /if }}
+
+              {{ #if processos.processo }}
+                <ul>
+                  <li>
+                    {{ #each processos.processo }}
+                    <ul>
+                      <li>
+                        Processo: {{ area_processo }} - {{ artigos.descricao }}
+                      </li>
+                      <li>Situação do processo: {{ situacao_processo }}</li>
+                      <li> {{ datas.data }} {{ comarca }} </li>
+                    </ul>
+                    {{ /each }}
+                </li>
+                </ul>
+              {{ /if }}
+              {{ #if $eq codigo_retorno '02' }}
+
+                  <ul>{{consoleLog mensagem_erro}}
+                  {{#if isArray mensagem_erro.erro }}
+                    {{ #each mensagem_erro.erro }}
+                      <li>{{codigo}} - {{mensagem}}</li>
+                    {{ /each}}
+                  {{ else}}
+                    <li>{{mensagem_erro.erro.codigo}} - {{mensagem_erro.erro.mensagem}}</li>
+                  {{/if}}
+
+                </ul>
+              {{ /if }}
+
+            </h5>
+          </a>
+        {{ /each }}
+
+      </div>
+
+      {{ /unless }}
+
+  {{ /if }}
+
+
+
+
+
+</template>

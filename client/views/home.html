@@ -1,0 +1,125 @@
+<template name="home">
+
+  <div class="app-content content container-fluid">
+    <div class="content-wrapper">
+      <div class="content-header row">
+      </div>
+      <div class="content-body">
+
+        {{ #if dataReady }}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                          <small>(página {{currentPage}})</small>
+                        </h4>
+                        <div style="float:right">
+
+                          {{ #if hasNewCredit }}
+                          <div class="alert alert-warning" style="text-align: center;">
+                            <i class="icon-check"></i>
+                            <span style="text-align: center;font-weight: bold;">Créditos adicionados: R$ {{ hasNewCredit }}</span>
+                            <a class="btnhasNewCredit" href="#" style="float: right">
+                              <strong>OK</strong>
+                            </a>
+                          </div>
+                          {{ /if }}
+
+                          <strong>{{ credits }}</strong>
+                          &nbsp;
+                          {{ #if hasCredit }}
+                            <a class="btn btn-primary goURL" href="/new-registry">Solicitar nova pesquisa</a>
+                          {{ else }}
+                            <a class="btn btn-primary" href="/credits">Comprar créditos</a>
+                          {{ /if }}
+                        </div>
+                    </div>
+                    <div class="card-body collapse in">
+                        <div class="card-block card-dashboard">
+
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table" id="leadsGrid">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                      <th>
+                                        Nome
+                                      </th>
+                                      <th>
+                                        CPF
+                                      </th>
+                                      {{ #if or isOperator isAdmin }}
+                                      <th>
+                                        Empresa
+                                      </th>
+                                      {{ /if }}
+                                      <th>
+                                        Status
+                                      </th>
+                                      <th>
+                                        Data
+                                      </th>
+                                      <th>
+                                        &nbsp;
+                                      </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  {{ #each registries }}
+                                    <tr class="x-{{ unRead this }}">
+                                      <td>
+                                        {{ name }}
+                                      </td>
+                                      <td>
+                                        {{ cpf }}
+                                      </td>
+                                      {{ #if or isOperator isAdmin }}
+                                      <td>
+                                        {{ userCompany createdBy }}
+                                      </td>
+                                      {{ /if }}
+                                      <td>
+                                        <span {{statusClass status}}>
+                                        {{ status }}
+                                        </span>
+                                      </td>
+                                      <td>
+                                        {{ moFormat createdAt 'L LT' }}
+                                      </td>
+                                      <td>
+                                        <a href="/details/{{_id}}" class="goURL btn btn-info">
+                                          Detalhes
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  {{ /each }}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-xs-center">
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              {{ #each pages.pages }}
+              <li class="page-item {{#if current}}active{{/if}}"><a class="page-link setPage" data-page="{{page}}" href="#">{{page}}</a></li>
+              {{ /each }}
+            </ul>
+          </nav>
+        </div>
+        {{ /if }}
+
+        {{ #unless dataReady }}
+          {{ > loading }}
+        {{ /unless }}
+
+      </div>
+    </div>
+  </div>
+
+</template>

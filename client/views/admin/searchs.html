@@ -1,0 +1,49 @@
+<template name="adminSearchs">
+
+  <div class="app-content content container-fluid">
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-xs-12 mb-1">
+          <h2 class="content-header-title"> </h2>
+        </div>
+      </div>
+      <div class="content-body">
+
+          <div class="table-responsive">
+            <h3>Total: {{searchs.length}} </h3>
+            <table class="table">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Última atualização</th>
+                  <th>&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{ #each searchs }}
+                <tr class="st-{{ last_codigo_retorno }} st-{{ soapStatus }}" data-id="{{_id}}">
+                  <td>{{ codigo_solicitacao }}</td>
+                  <td>{{ registryObj registry 'name' }}</td>
+                  <td>
+                    {{ registryObj registry 'cpf'}}
+                  </td>
+                  <td>
+                    {{ moFormat createdAt 'L LT' }} -
+                    {{ status }}
+                  </td>
+                  <td>
+                    <a class="btn btn-sm btn-info" href="/details/{{ registry }}">detalhes</a>
+                  </td>
+                </tr>
+                {{ /each }}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+</template>
